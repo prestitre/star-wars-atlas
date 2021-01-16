@@ -1,12 +1,26 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <b-navbar>
+      <template #brand>
+        <b-navbar-item tag="router-link" :to="{ path: '/'}">
+          <h1><strong>Star Wars Encyclopedia</strong></h1>
+        </b-navbar-item>
+      </template>
+    </b-navbar>
     <router-view/>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  name: 'app',
+  mounted() {
+    this.$store.dispatch('getPlanets')
+    this.$store.dispatch('getSpecies')
+  }
+})
+</script>
 
 <style>
 #app {
@@ -17,16 +31,4 @@
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
