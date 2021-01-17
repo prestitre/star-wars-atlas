@@ -35,5 +35,8 @@ body{
   height: 100%;
   width: 100%;
 }
+.is-black{
+  font-size: 180%;
+}
 
 </style>

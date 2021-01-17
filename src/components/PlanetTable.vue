@@ -84,6 +84,7 @@ export default Vue.extend({
     border-width: 3px;
   }
   .card-header{
+    font-size: 140%;
     border-style: solid;
     border-width: 1px 1px 4px 1px;
     border-color: yellow;
