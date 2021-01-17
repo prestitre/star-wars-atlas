@@ -3,7 +3,7 @@
     <b-navbar>
       <template #brand>
         <b-navbar-item tag="router-link" :to="{ path: '/'}">
-          <h1><strong>Star Wars Encyclopedia</strong></h1>
+          <h1><strong>Star Wars Atlas</strong></h1>
         </b-navbar-item>
       </template>
     </b-navbar>
@@ -16,8 +16,7 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'app',
   mounted() {
-    this.$store.dispatch('getPlanets')
-    this.$store.dispatch('getSpecies')
+    this.$store.dispatch('getData')
   }
 })
 </script>

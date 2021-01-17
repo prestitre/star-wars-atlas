@@ -10,26 +10,25 @@ export default new Vuex.Store({
     species: [],
     defaultOpenedDetails: [],
     loading: true,
-    pickedSpecie: [],
+    selectedSpecie: [],
     errors:[]
   },
   mutations: {
-    SET_PLANETS (state, planets){
-      state.planets = planets
+    SET_DATA (state, data){
+      state.planets = data.formattedPlanets
+      state.species = data.formattedSpecies
+      state.loading = false
     },
-    SET_SPECIES (state, species){
-      state.species = species
+    SET_SELECTED_SPECIE (state, specie) {
+      state.selectedSpecie = specie
     },
-    SET_ERRORS (state, errors) {
+    SET_ERRORS (state, errors){
       state.errors = errors
-    },
-    SET_LOADING (state, loading) {
-      state.loading = loading
     }
   },
   actions: {
-    getPlanets({commit}){
-      const formattedPlanets = []
+    getData({commit}){
+      const formattedPlanets: Record<string, any> = []
       Promise.all([
         axios.get('https://swapi.dev/api/planets/'),
         axios.get('http://swapi.dev/api/planets/?page=2'),
@@ -42,7 +41,6 @@ export default new Vuex.Store({
         planets = planets.concat(two.data.results, three.data.results, four.data.results, five.data.results, six.data.results)
         let i = 1
         planets.forEach(element => {
-          console.log(element)
           const newPlanet = {
             id: i,
             name: element.name,
@@ -52,16 +50,12 @@ export default new Vuex.Store({
           formattedPlanets.push(newPlanet)
           i = i + 1
         })
-        console.log(formattedPlanets)
-        commit('SET_PLANETS', formattedPlanets)
       })
       .catch(errors => {
         console.log(errors)
+        commit('SET_ERRORS', errors)
       })
-      commit('SET_LOADING', false)
-    },
-    getSpecies({commit}){
-      const formattedSpecies = []
+      const formattedSpecies: Record<string, any> = []
       Promise.all([
         axios.get('https://swapi.dev/api/species/'),
         axios.get('http://swapi.dev/api/species/?page=2'),
@@ -71,30 +65,34 @@ export default new Vuex.Store({
         let species = one.data.results
         species = species.concat(two.data.results, three.data.results, four.data.results)
         let i = 1
-        species.forEach(element => {
+        species.forEach(Element => {
           let homep = null
-          if(element.homeworld != null){
-            const str = element.homeworld.toString()
+          if(Element.homeworld != null){
+            const str = Element.homeworld.toString()
             homep = parseInt(str.replace(/[^0-9]/g, ''))
           }
           const newSpecie = {
             id: i,
-            name: element.name,
+            name: Element.name,
             homeplanet: homep,
-            classification: element.classification,
-            language: element.language
+            classification: Element.classification,
+            language: Element.language
           }
           formattedSpecies.push(newSpecie)
           i = i + 1
-        });
-        console.log(formattedSpecies)
-        commit('SET_SPECIES', formattedSpecies)
+          if(homep != null){
+            formattedPlanets[homep-1].species.push(newSpecie)
+          }
+        })
+        commit('SET_DATA', {formattedPlanets, formattedSpecies})
       })
       .catch(errors => {
         console.log(errors)
         commit('SET_ERRORS', errors)
       })
-
+    },
+    selectSpecie({commit}, specie){
+      commit('SET_SELECTED_SPECIE', specie)
     }
   },
   modules: {

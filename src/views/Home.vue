@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <PlanetTable msg="Welcome to Your Vue.js + TypeScript App"/>
+    <PlanetTable />
   </div>
 </template>
 
