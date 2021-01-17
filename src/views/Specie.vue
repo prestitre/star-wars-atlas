@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="specie-page">
     <div class="back-button">
-      <b-button icon-left="arrow-left" tag="router-link" :to="{ path: '/'}">Back to Planets table</b-button>
+      <b-button type="is-warning" inverted icon-left="arrow-left" tag="router-link" :to="{ path: '/'}">Back to Planets table</b-button>
     </div>
     <SpecieInfo />
   </div>
@@ -21,5 +21,8 @@ export default Vue.extend({
   .back-button {
     float: left;
   }
+  .specie {
+    background: black;
 
+  }
 </style>

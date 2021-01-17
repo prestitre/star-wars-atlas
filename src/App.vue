@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <b-navbar>
+    <b-navbar transparent class="is-black">
       <template #brand>
         <b-navbar-item tag="router-link" :to="{ path: '/'}">
-          <h1><strong>Star Wars Atlas</strong></h1>
+          <h1><strong class="has-text-light">Star Wars Atlas</strong></h1>
         </b-navbar-item>
       </template>
     </b-navbar>
@@ -28,6 +28,12 @@ export default Vue.extend({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color:black;
+}
+body{
+  background-color: black;
+  height: 100%;
+  width: 100%;
 }
 
 </style>
