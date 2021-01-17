@@ -31,11 +31,11 @@ export default new Vuex.Store({
       const formattedPlanets: Record<string, any> = []
       Promise.all([
         axios.get('https://swapi.dev/api/planets/'),
-        axios.get('http://swapi.dev/api/planets/?page=2'),
-        axios.get('http://swapi.dev/api/planets/?page=3'),
-        axios.get('http://swapi.dev/api/planets/?page=4'),
-        axios.get('http://swapi.dev/api/planets/?page=5'),
-        axios.get('http://swapi.dev/api/planets/?page=6')
+        axios.get('https://swapi.dev/api/planets/?page=2'),
+        axios.get('https://swapi.dev/api/planets/?page=3'),
+        axios.get('https://swapi.dev/api/planets/?page=4'),
+        axios.get('https://swapi.dev/api/planets/?page=5'),
+        axios.get('https://swapi.dev/api/planets/?page=6')
       ]).then(([one, two, three, four, five, six]) => {
         let planets = one.data.results
         planets = planets.concat(two.data.results, three.data.results, four.data.results, five.data.results, six.data.results)
@@ -58,9 +58,9 @@ export default new Vuex.Store({
       const formattedSpecies: Record<string, any> = []
       Promise.all([
         axios.get('https://swapi.dev/api/species/'),
-        axios.get('http://swapi.dev/api/species/?page=2'),
-        axios.get('http://swapi.dev/api/species/?page=3'),
-        axios.get('http://swapi.dev/api/planets/?page=4')
+        axios.get('https://swapi.dev/api/species/?page=2'),
+        axios.get('https://swapi.dev/api/species/?page=3'),
+        axios.get('https://swapi.dev/api/planets/?page=4')
       ]).then(([one, two, three, four]) => {
         let species = one.data.results
         species = species.concat(two.data.results, three.data.results, four.data.results)
