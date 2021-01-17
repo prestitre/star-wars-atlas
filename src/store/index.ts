@@ -40,7 +40,7 @@ export default new Vuex.Store({
         let planets = one.data.results
         planets = planets.concat(two.data.results, three.data.results, four.data.results, five.data.results, six.data.results)
         let i = 1
-        planets.forEach(element => {
+        planets.forEach(function (element: Record<string, any>) {
           const newPlanet = {
             id: i,
             name: element.name,
@@ -65,7 +65,7 @@ export default new Vuex.Store({
         let species = one.data.results
         species = species.concat(two.data.results, three.data.results, four.data.results)
         let i = 1
-        species.forEach(Element => {
+        species.forEach(function (Element: Record<string,any>) {
           let homep = null
           if(Element.homeworld != null){
             const str = Element.homeworld.toString()
