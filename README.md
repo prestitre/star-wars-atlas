@@ -1,5 +1,7 @@
 # star-wars-encyclopedia
 
+See [project running](https://blissful-mahavira-a6688d.netlify.app/)
+
 ## Project setup
 ```
 npm install
